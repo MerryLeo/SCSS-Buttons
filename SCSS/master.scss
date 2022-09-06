@@ -1,0 +1,84 @@
+// Scss variables
+$header-height: 15vh;
+$footer-height: 10vh;
+
+// Paddings & margins
+$padding: .5rem;
+
+// Texts
+$title: 'Welcome to my custom SCSS Buttons!';
+$subtitle: 'I made these button themes mostly to learn SASS';
+$copyright: 'Copyright Leo Taillon';
+
+// Colors
+$primary-color: #5179d7;
+$secondary-color:#5283ee;
+$third-color: #ffffff;
+$header-text-color: white;
+$text-color: black;
+
+@forward '../SCSS/button';
+@use 'button' as btn;
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: grid;
+    grid-template-rows: $header-height 1fr $footer-height;
+    background-color: $third-color;
+    height: 100vh;
+    color: $text-color;
+
+    header, main, footer {
+        padding: $padding;
+    }
+
+    header, footer {
+        color: $header-text-color;
+        background-color: $primary-color;
+    }
+}
+
+main {
+    display: grid;
+    grid-template: repeat(4, 1fr) / repeat(6, 1fr);
+    grid-auto-columns: min-content;
+    justify-items: center;
+    align-items: center;
+    gap: 25px;
+}
+
+@media screen and (max-width: 1000px) {
+    main {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 500px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+}
+
+button, input[type="button"] {
+    @include btn.btn-theme(capsule, $secondary-color); 
+}
+
+header {
+    h1::after {
+        content: $title;
+    }
+    
+    h2::after {
+        content: $subtitle;
+    }
+}
+
+
+footer small::after {
+    content: $copyright;
+}

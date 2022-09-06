@@ -1,0 +1,109 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: grid;
+  grid-template-rows: 15vh 1fr 10vh;
+  background-color: #ffffff;
+  height: 100vh;
+  color: black;
+}
+body header, body main, body footer {
+  padding: 0.5rem;
+}
+body header, body footer {
+  color: white;
+  background-color: #5179d7;
+}
+
+main {
+  display: grid;
+  grid-template: repeat(4, 1fr)/repeat(6, 1fr);
+  grid-auto-columns: min-content;
+  justify-items: center;
+  align-items: center;
+  gap: 25px;
+}
+
+@media screen and (max-width: 1000px) {
+  main {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (max-width: 500px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+}
+button, input[type=button] {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content;
+  height: fit-content;
+  font-weight: bold;
+  padding: 1rem;
+  border: none;
+  background: #5283ee;
+  color: white;
+  transition: transform ease-in-out 100ms;
+  box-shadow: 0 0.125rem 0.2rem black;
+  border-radius: 500000px;
+}
+button:enabled::before, input[type=button]:enabled::before {
+  content: "";
+  position: absolute;
+  z-index: -5;
+  border-radius: 500000px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0.5rem 0.5rem 0.6rem rgba(0, 0, 0, 0.4980392157);
+  opacity: 0;
+  transition: opacity ease-in-out 100ms;
+}
+button:enabled:hover, input[type=button]:enabled:hover {
+  background: #80a4f3;
+  transform: translate(-0.25rem, -0.25rem);
+  transition: transform ease-in-out 100ms;
+}
+button:enabled:hover::before, input[type=button]:enabled:hover::before {
+  transition: opacity ease-in-out 100ms;
+  opacity: 0.4;
+}
+button:enabled:focus, input[type=button]:enabled:focus {
+  outline: 0.15rem solid #ddeefc;
+}
+button:enabled:active, input[type=button]:enabled:active {
+  transform: translate(0.25rem, 0.25rem);
+  transition: transform ease-in-out 50ms;
+}
+button:enabled:active::before, input[type=button]:enabled:active::before {
+  transition: opacity ease-in-out 100ms;
+  opacity: 0;
+}
+button:disabled, input[type=button]:disabled {
+  cursor: default;
+  background: #52627b;
+}
+button::after, input[type=button]::after {
+  content: "Press me!";
+}
+
+header h1::after {
+  content: "Welcome to my custom SCSS Buttons!";
+}
+header h2::after {
+  content: "I made these button themes mostly to learn SASS";
+}
+
+footer small::after {
+  content: "Copyright Leo Taillon";
+}
+
+/*# sourceMappingURL=master.css.map */
